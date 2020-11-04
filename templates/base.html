@@ -1,0 +1,43 @@
+<!-- <link rel="stylesheet" href="estilo.css">
+-->
+<div class="cabezal"> Menú: <a href="/trivia">Inicio</a> --- <a href="/trivia/categorias">Categorias</a>
+</div>
+<hr>
+<div style="text-align: center;font-family:verdana;">
+<h1 style="text-decoration: underline"> &#10067; --- La Trivia TRIVIAL --- &#10067;</h1>
+<br>
+</div>
+
+{% with messages = get_flashed_messages() %}
+          {% if messages %}
+          <ul>
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+          </ul>
+          {% endif %}
+{% endwith %}
+
+
+{% block content %}{% endblock %}
+
+
+<style>
+.cabezal {
+
+background: rgba(147,206,222,1);
+background: -moz-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(53%, rgba(115,227,255,1)), color-stop(100%, rgba(224,248,255,1)));
+background: -webkit-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+background: -o-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+background: -ms-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+background: linear-gradient(to right, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#e0f8ff', GradientType=1 );
+font-weight: bold;
+font-size: 20px;
+font-family:verdana;
+padding: 12px;
+margin: 10px;
+
+}
+</style>

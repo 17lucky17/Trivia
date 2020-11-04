@@ -1,0 +1,19 @@
+<body>
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center;font-family:verdana;">
+    <h1>FELICIDADES!!!! Has completado la Trivia</h1>
+    <span style='font-size:100px;'>&#127942;</span>
+    <h2>Tu tiempo: {{tiempo}}</h2>
+    <p> minutos  = {{minutos}}</p>
+    {% if minutos >= 1 %}
+        Manuelita, Manuelita, Manuelita, donde vas?
+        <span style='font-size:100px;'>&#128034;</span>
+    {% else %}
+        Eres el Flash de la Trivia TRIVIAL!
+        <span style='font-size:100px;'>&#9889;</span>
+    {% endif %}
+</div>
+<br>
+{% endblock %}
+</body>
