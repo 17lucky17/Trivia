@@ -1,14 +1,37 @@
 <!-- <link rel="stylesheet" href="estilo.css">
 -->
+<!--
 <div class="cabezal"> Menú: <a href="/trivia">Inicio</a> --- <a href="/trivia/categorias">Categorias</a>
 </div>
 <hr>
 <div style="text-align: center;font-family:verdana;">
 <h1 style="text-decoration: underline"> &#10067; --- La Trivia TRIVIAL --- &#10067;</h1>
 <br>
-</div>
+</div>-->
+<html>
+    <head>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">c
+        <title>Trivia</title>
+    </head>
+    <body>
+        <div class="cabezal">
+            <span>
+                <a href="{{ url_for('index') }}">Inicio - </a>
+                {% if current_user.is_anonymous %}
+                    <a href="{{ url_for('login') }}">Iniciar sesión</a>
+                {% else %}
+                    Usuario {{ current_user.name }} - <a href="{{ url_for('logout') }}">Cerrar sesión</a>
+                {% endif %}
+            </span>
 
-{% with messages = get_flashed_messages() %}
+            <hr>
+            <div style="text-align: center;font-family:verdana;">
+                <h1 style="text-decoration: underline"> &#10067; --- La Trivia TRIVIAL --- &#10067;</h1>
+                <br>
+            </div>
+        </div>
+        <hr>
+    {% with messages = get_flashed_messages() %}
           {% if messages %}
           <ul>
               {% for message in messages %}
@@ -16,28 +39,29 @@
               {% endfor %}
           </ul>
           {% endif %}
-{% endwith %}
+    {% endwith %}
 
+    {% block content %}{% endblock %}
 
-{% block content %}{% endblock %}
+    </body>
 
+    <style>
+    .cabezal {
 
-<style>
-.cabezal {
+    background: rgba(147,206,222,1);
+    background: -moz-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+    background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(53%, rgba(115,227,255,1)), color-stop(100%, rgba(224,248,255,1)));
+    background: -webkit-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+    background: -o-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+    background: -ms-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+    background: linear-gradient(to right, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#e0f8ff', GradientType=1 );
+    font-weight: bold;
+    font-size: 20px;
+    font-family:verdana;
+    padding: 12px;
+    margin: 10px;
 
-background: rgba(147,206,222,1);
-background: -moz-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
-background: -webkit-gradient(left top, right top, color-stop(0%, rgba(147,206,222,1)), color-stop(53%, rgba(115,227,255,1)), color-stop(100%, rgba(224,248,255,1)));
-background: -webkit-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
-background: -o-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
-background: -ms-linear-gradient(left, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
-background: linear-gradient(to right, rgba(147,206,222,1) 0%, rgba(115,227,255,1) 53%, rgba(224,248,255,1) 100%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#93cede', endColorstr='#e0f8ff', GradientType=1 );
-font-weight: bold;
-font-size: 20px;
-font-family:verdana;
-padding: 12px;
-margin: 10px;
-
-}
-</style>
+    }
+    </style>
+</html>

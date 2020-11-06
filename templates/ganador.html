@@ -2,9 +2,9 @@
 {% extends "base.html" %}
 {% block content %}
 <div style="text-align: center;font-family:verdana;">
-    <h1>FELICIDADES!!!! Has completado la Trivia</h1>
+    <h2>FELICIDADES!!!! Has completado la Trivia</h2>
     <span style='font-size:100px;'>&#127942;</span>
-    <h2>Tu tiempo: {{tiempo}}</h2>
+    <h3>Tu tiempo: {{tiempo}}</h3>
     <p> minutos  = {{minutos}}</p>
     {% if minutos >= 1 %}
         Manuelita, Manuelita, Manuelita, donde vas?
@@ -13,6 +13,9 @@
         Eres el Flash de la Trivia TRIVIAL!
         <span style='font-size:100px;'>&#9889;</span>
     {% endif %}
+    <br>
+    <h3>Te animas a jugar de nuevo?</h3>
+    <h3> <a href="{{ url_for('mostrarcategorias') }}">Comenzar a jugar</a></h3>
 </div>
 <br>
 {% endblock %}
