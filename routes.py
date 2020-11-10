@@ -17,10 +17,10 @@ login_manager = LoginManager(app)
 @app.route('/trivia')
 def index():
     print(" &&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&& INDEX")
-    session.clear()
-
+    #session.clear()
     dicc_categorias = {"Geografía": False, "Deportes": False, "Historia": False, "Arte": False}
     session['dicc_categorias'] = dicc_categorias
+    session['hora_inicio'] = None
 
     return render_template('trivia.html')
 
@@ -32,9 +32,12 @@ def load_user(user_id):
 @app.route('/trivia/login', methods=['GET', 'POST'])
 def login():
     if current_user.is_authenticated:
+        print("en /trivia/login autenticado y voy a index")
         return redirect(url_for('index'))
     form = LoginForm()
     if form.validate_on_submit():
+        print("en /trivia/login autenticado validate on submit")
+        print("mail = ", form.email.data)
         #get by email valida
         user = User.get_by_email(form.email.data)
         if user is not None and user.check_password(form.password.data):
@@ -42,6 +45,7 @@ def login():
             login_user(user, remember=form.remember_me.data)
             next_page = request.args.get('next', None)
             if not next_page:
+                print("va a index")
                 next_page = url_for('index')
             return redirect(next_page)
 
@@ -109,9 +113,13 @@ def handle_exception(e):
 def mostrarcategorias():
     categorias = Categoria.query.all()
     categs = session['dicc_categorias']
-    session['hora_inicio'] = datetime.datetime.now()
-    hi = session['hora_inicio']
-    hora_inicio = hi.strftime("%d/%m/%Y - %H:%M:%S")
+    hora_inicio = session['hora_inicio']
+    if(session['hora_inicio'] == None):
+        print("pongo hora inicio")
+        session['hora_inicio'] = datetime.datetime.now()
+        hi = session['hora_inicio']
+        hora_inicio = hi.strftime("%d/%m/%Y - %H:%M:%S")
+
     print("Categorias en mostrarcategorias = ", session['dicc_categorias'])
     return render_template('categorias.html', categorias=categorias, inicio=hora_inicio)
 
@@ -158,17 +166,13 @@ def mostrarresultado(id_respuesta,id_pregunta):
         return render_template('resultado.html', resultado=resp.resultado, pregunta=preg, respuesta=resp)
     else:
         print("NO hay falsos")
-    """
-    for cat in session['dicc_categorias']:
-        if session['dicc_categorias'][cat] == False:
-            return render_template('resultado.html', resultado="ok", pregunta=preg)
-    """
-    tiempo_total = hora_fin - session['hora_inicio']
-    #tiempo_partida = tiempo_total.total_seconds()
 
+    tiempo_total = hora_fin - session['hora_inicio']
+
+    #print("Hora inicio =", session['hora_inicio'], " -- hora fin = ", hora_fin)
     minutos = tiempo_total.total_seconds() / 60
     segundos = tiempo_total.total_seconds() % 60
 
-    tiempo_partida = str(int(round(minutos,0))) + " minutos y " + str(int(round(segundos,0))) + " segundos"
-    print("Cant minutos = ", minutos, " -- segundos = ", segundos)
+    tiempo_partida = str(int(minutos)) + " minutos y " + str(int(segundos)) + " segundos"
+    #print("Cant minutos = ", minutos, " -- segundos = ", segundos)
     return render_template('ganador.html', tiempo=tiempo_partida, minutos=minutos)

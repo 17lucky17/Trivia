@@ -5,7 +5,6 @@
     <h2>FELICIDADES!!!! Has completado la Trivia</h2>
     <span style='font-size:100px;'>&#127942;</span>
     <h3>Tu tiempo: {{tiempo}}</h3>
-    <p> minutos  = {{minutos}}</p>
     {% if minutos >= 1 %}
         Manuelita, Manuelita, Manuelita, donde vas?
         <span style='font-size:100px;'>&#128034;</span>
@@ -15,7 +14,7 @@
     {% endif %}
     <br>
     <h3>Te animas a jugar de nuevo?</h3>
-    <h3> <a href="{{ url_for('mostrarcategorias') }}">Comenzar a jugar</a></h3>
+    <h3> <a href="{{ url_for('index') }}">Comenzar a jugar</a></h3>
 </div>
 <br>
 {% endblock %}

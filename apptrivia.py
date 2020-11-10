@@ -2,6 +2,7 @@ from flask import Flask, session, url_for, redirect, request
 from flask_sqlalchemy import SQLAlchemy
 from flask_admin import Admin, AdminIndexView
 from flask_admin.contrib.sqla import ModelView
+from flask_migrate import Migrate
 import os
 
 # instancia Flask

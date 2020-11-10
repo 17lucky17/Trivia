@@ -32,3 +32,7 @@ SQLALCHEMY_DATABASE_URI = f"postgresql://{POSTGRES['user']}:" \
                           f"{POSTGRES['pw']}@{POSTGRES['host']}:" \
                           f"{POSTGRES['port']}/{POSTGRES['db']}"
 
+BASE_DIR = os.path.dirname(__file__)
+
+MEDIA_URL='/imagenes/'
+MEDIA_ROOT=os.path.join(BASE_DIR,"imagenes")
