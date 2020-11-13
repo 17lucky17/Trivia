@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center;font-family:verdana;">
+    <h2>Selecciona una Categoria</h2>
+    <br>
+    <table border="0" align="center" style="width: 70%;table-layout:fixed;text-align:center;">
+        <tr><td><span style='font-size:54px;'>&#127758;</span></td>
+            <td><span style='font-size:50px;'>&#9917;</span></td>
+            <td><span style='font-size:50px;'>&#128218;</span></td>
+            <td><span style='font-size:50px;'>&#127912;</span></td>
+            <td><span style='font-size:50px;'>&#127916;</span></td>
+            <td><span style='font-size:50px;'>&#128300;</span></td>
+        </tr>
+        <tr>
+        {% for categoria in categorias %}
+            {% if session.get('dicc_categorias')[categoria.descripcion] == False %}
+                <td style="font-size:20px;font-family:verdana;"><a href="/trivia/{{categoria.id}}/pregunta">
+                {{categoria.descripcion}}
+                </a></td>
+            {%else%}
+                <td style="font-size:20px;font-family:verdana;">
+                {{categoria.descripcion}} <span style='font-size:25px;'>&#10004;</span>
+                </td>
+            {%endif%}
+       {% endfor %}
+        </tr>
+    </table>
+    <br><br>
+    <p>Inicio de tu partida: {{inicio}}</p>
+</div>
+{% endblock %}

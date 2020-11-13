@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="text-align: center;font-family:verdana;">
+    <h2>Resultado:</h2>
+    <h3>Pregunta: {{pregunta.text}}</h3>
+    <h3>Tu respuesta: {{respuesta.text}}</h3>
+        {% if resultado == True %}
+            <span style='font-size:80px;'>&#128512;</span>
+            <h2>Felicitaciones! - Tu respuesta es correcta</h2>
+        {% else %}
+            <span style='font-size:80px;'>&#128543;</span>
+            <h2>Tu respuesta no es correcta. Mejor suerte para la próxima (vida)</h2>
+        {% endif %}
+        <p><a href="{{ url_for('public.mostrarcategorias') }}">Seguir jugando</a></p>
+</div>
+{% endblock %}

@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-from apptrivia import db
-from models.models import Categoria, Pregunta, Respuesta, User
-
+from app import db
+from app.public.models import Categoria, Pregunta, Respuesta
+from app.auth.models import User, Role
 
 db.drop_all()
 db.create_all()
@@ -13,6 +13,8 @@ c_geogra = Categoria(descripcion="Geografía")
 c_deporte = Categoria(descripcion="Deportes")
 c_historia = Categoria(descripcion="Historia")
 c_arte = Categoria(descripcion="Arte")
+c_cine = Categoria(descripcion="Cine")
+c_ciencia = Categoria(descripcion="Ciencia")
 
 # preguntas
 q_Laos = Pregunta(text="¿Cuál es la capital de Laos?",categoria=c_geogra)
@@ -26,7 +28,13 @@ q_indepen = Pregunta(text="¿En qué ciudad se declaró la independencia del Uru
 q_orientales = Pregunta(text="¿Donde se realizó el desembarco de los 33 orientales?",categoria=c_historia)
 q_libro = Pregunta(text="¿Quíen escribió el libro Gracias por el fuego?",categoria=c_arte)
 q_movimiento = Pregunta(text="¿Para qué movimiento fue clave el aporte de Claude Monet?",categoria=c_arte)
-q_pelicula = Pregunta(text="¿Quíen protagonizó la última zaga de Misión Imposible?",categoria=c_arte)
+q_pintura = Pregunta(text="¿Quíen es el autor del cuadro Batalla de Las Piedras?",categoria=c_arte)
+q_musica = Pregunta(text="¿Quién compuso la música de la película Cinema Paradiso?",categoria=c_cine)
+q_director = Pregunta(text="¿Quién fue el director de Titanic?",categoria=c_cine)
+q_pelicula = Pregunta(text="¿Quién protagonizó la última zaga de Misión Imposible?",categoria=c_cine)
+q_celula = Pregunta(text="¿Cómo se llama el proceso de división de una célula en dos células hijas?",categoria=c_ciencia)
+q_elemento = Pregunta(text="¿Qué tipo de elemento es el Oganesón?",categoria=c_ciencia)
+q_velocidad = Pregunta(text="¿Cuál de estas velocidades corresponde a los movimientos circulares?",categoria=c_ciencia)
 
 r_LaosA = Respuesta(text="Kuala Lumpur",resultado=False,pregunta=q_Laos)
 r_LaosB = Respuesta(text="Timbu",resultado=False,pregunta=q_Laos)
@@ -61,22 +69,34 @@ r_libroC = Respuesta(text="Idea Vilariño",resultado=False,pregunta=q_libro)
 r_movimientoA = Respuesta(text="Expresionismo",resultado=False,pregunta=q_movimiento)
 r_movimientoB = Respuesta(text="Surrealismo",resultado=False,pregunta=q_movimiento)
 r_movimientoC = Respuesta(text="Impresionismo",resultado=True,pregunta=q_movimiento)
+r_pintorA = Respuesta(text="Manuel Rosé",resultado=True,pregunta=q_pintura)
+r_pintorB = Respuesta(text="Juan Manuel Blanes",resultado=False,pregunta=q_pintura)
+r_pintorC = Respuesta(text="Joaquín Torres García",resultado=False,pregunta=q_pintura)
+r_musicaA = Respuesta(text="John Williams",resultado=False,pregunta=q_musica)
+r_musicaB = Respuesta(text="Ennio Morricone",resultado=True,pregunta=q_musica)
+r_musicaC = Respuesta(text="Nicola Piovani",resultado=False,pregunta=q_musica)
+r_directorA = Respuesta(text="Quentin Tarantino",resultado=False,pregunta=q_director)
+r_directorB = Respuesta(text="Ridley Scott",resultado=False,pregunta=q_director)
+r_directorC = Respuesta(text="James Cameron",resultado=True,pregunta=q_director)
 r_peliculaA = Respuesta(text="Tom Cruise",resultado=True,pregunta=q_pelicula)
 r_peliculaB = Respuesta(text="Liam Neeson",resultado=False,pregunta=q_pelicula)
 r_peliculaC = Respuesta(text="Brad Pitt",resultado=False,pregunta=q_pelicula)
-
-#Usuarios
-q_u1 = User(name="Maria",email="maria@antel.com.uy",admin=True)
-# el pass lo seteamos con el método set_password para que se guarde con hash
-q_u1.set_password("Maria123")
-# por defecto, el usuario no es admin
-q_u2 = User(name="Juan",email="juan@antel.com.uy")
-q_u2.set_password("Juan123")
+r_celulaA = Respuesta(text="Meiosis",resultado=False,pregunta=q_celula)
+r_celulaB = Respuesta(text="Mitosis",resultado=True,pregunta=q_celula)
+r_celulaC = Respuesta(text="Simbiosis",resultado=False,pregunta=q_celula)
+r_elementoA = Respuesta(text="Gas noble",resultado=True,pregunta=q_elemento)
+r_elementoB = Respuesta(text="Actínido",resultado=False,pregunta=q_elemento)
+r_elementoC = Respuesta(text="Metal",resultado=False,pregunta=q_elemento)
+r_velocidadA = Respuesta(text="Velocidad de trayectoria",resultado=False,pregunta=q_velocidad)
+r_velocidadB = Respuesta(text="Velocidad lineal",resultado=False,pregunta=q_velocidad)
+r_velocidadC = Respuesta(text="Velocidad angular",resultado=True,pregunta=q_velocidad)
 
 db.session.add(c_geogra)
 db.session.add(c_deporte)
 db.session.add(c_historia)
 db.session.add(c_arte)
+db.session.add(c_cine)
+db.session.add(c_ciencia)
 
 db.session.add(q_Laos)
 db.session.add(q_Armenia)
@@ -89,7 +109,13 @@ db.session.add(q_indepen)
 db.session.add(q_orientales)
 db.session.add(q_libro)
 db.session.add(q_movimiento)
+db.session.add(q_pintura)
+db.session.add(q_musica)
+db.session.add(q_director)
 db.session.add(q_pelicula)
+db.session.add(q_celula)
+db.session.add(q_elemento)
+db.session.add(q_velocidad)
 
 db.session.add(r_LaosA)
 db.session.add(r_LaosB)
@@ -124,14 +150,51 @@ db.session.add(r_libroC)
 db.session.add(r_movimientoA)
 db.session.add(r_movimientoB)
 db.session.add(r_movimientoC)
+db.session.add(r_pintorA)
+db.session.add(r_pintorB)
+db.session.add(r_pintorC)
+db.session.add(r_musicaA)
+db.session.add(r_musicaB)
+db.session.add(r_musicaC)
+db.session.add(r_directorA)
+db.session.add(r_directorB)
+db.session.add(r_directorC)
 db.session.add(r_peliculaA)
 db.session.add(r_peliculaB)
 db.session.add(r_peliculaC)
+db.session.add(r_celulaA)
+db.session.add(r_celulaB)
+db.session.add(r_celulaC)
+db.session.add(r_elementoA)
+db.session.add(r_elementoB)
+db.session.add(r_elementoC)
+db.session.add(r_velocidadA)
+db.session.add(r_velocidadB)
+db.session.add(r_velocidadC)
 
-db.session.add(q_u1)
-db.session.add(q_u2)
+#Usuarios
+u1 = User(name='Martita',email='martita@antel.com.uy',menor_tiempo=None)
+u2 = User(name='Pablito',email='pablito@antel.com.uy',menor_tiempo=None)
+u3 = User(name='Juancito',email='juancito@antel.com.uy',menor_tiempo=None)
+u4 = User(name='Sarita',email='sarita@antel.com.uy',menor_tiempo=None)
+u5 = User(name='Clarita',email='clarita@antel.com.uy',menor_tiempo=None)
+u6 = User(name='Laurita',email='laurita@antel.com.uy',menor_tiempo=None)
+u1.set_password("567890")
+u2.set_password("678901")
+u3.set_password("789012")
+u4.set_password("890123")
+u5.set_password("901234")
+u6.set_password("012345")
 
-db.session.commit()
+db.session.add_all([u1, u2, u3, u4, u5, u6])
+
+db.session.add_all(
+         [Role(rolename='admin', user=u1),
+          Role(rolename='user', user=u2),
+          Role(rolename='user', user=u3),
+          Role(rolename='admin', user=u4),
+          Role(rolename='user', user=u5),
+          Role(rolename='user', user=u6)])
 
 # creamos otros usuarios (…) y los recorremos
 categorias = Categoria.query.all()
@@ -141,7 +204,6 @@ for c in categorias:
     # cada vez que creo una pregunta para esa categoría
     for p in c.preguntas:
         print(p.id, p.text)
-
 
 cat = Categoria.query.get(1)
 print(cat)
