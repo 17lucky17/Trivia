@@ -41,9 +41,15 @@ class User(db.Model, UserMixin):
         return User.query.filter_by(email=email).first()
 
 class Role(db.Model):
+    __tablename__ = 'role'
     id = db.Column(db.Integer, primary_key=True)
     rolename = db.Column(db.String(60), nullable=False)
     user_id = db.Column(db.Integer, db.ForeignKey('usuario.id'))
+
+    def save(self):
+        if not self.id:
+            db.session.add(self)
+        db.session.commit()
 
     def __repr__(self):
         return f'<Role {self.rolename}>'

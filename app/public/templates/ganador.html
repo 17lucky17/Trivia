@@ -4,15 +4,16 @@
     <h2><span style='font-size:70px;'>&#127942;</span> FELICIDADES!!!! Has completado la Trivia TRIVIAL <span style='font-size:70px;'>&#127942;</span></h2>
     <h4>Tu tiempo: {{tiempo}}</h4>
     {% if minutos >= 1 %}
-        Manuelita, Manuelita, Manuelita, donde vas?
+        Un poco lento...Manuelita
         <span style='font-size:80px;'>&#128034;</span>
     {% else %}
         Eres el Flash de la Trivia TRIVIAL!
         <span style='font-size:80px;'>&#9889;</span>
     {% endif %}
     <br>
-    <h4>Te animas a jugar de nuevo?</h4>
-    <h4> <a href="{{ url_for('public.index') }}">Comenzar Trivia</a></h4>
+    <br>
+    <h4>¿Te animas a jugar de nuevo?</h4>
+    <h4> <a href="{{ url_for('public.index') }}">Comenzar nueva Trivia</a></h4>
     <br>
     <h4> <a href="{{ url_for('public.mostrarmejores') }}">Mejores tiempos</a></h4>
 </div>

@@ -4,33 +4,33 @@
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
             <table border="0" align="center">
-                <tr>
-                    <td>{{ form.email.label }}</td>
+                <tr style="font-size:20px;height:45px">
+                    <td>{{ form.email.label }}: </td>
                     <td>{{ form.email }}<br>
                         {% for error in form.email.errors %}
-                            <span style="color: red;">{{ error }}</span>
+                            <b><span style="color: red;">{{ error }}</span></b>
                         {% endfor %}
                     </td>
                 </tr>
-                <tr>
-                    <td>{{ form.password.label }}</td>
+                <tr style="font-size:20px;height:45px">
+                    <td>{{ form.password.label }}: </td>
                     <td>{{ form.password }}<br>
                         {% for error in form.password.errors %}
-                            <span style="color: red;">{{ error }}</span>
+                            <b><span style="color: red;">{{ error }}</span></b>
                         {% endfor %}
                     </td>
                 </tr>
             </table>
             <br>
-            <div>{{ form.remember_me() }} {{ form.remember_me.label }}</div>
+            <div style="font-size:20px;">{{ form.remember_me() }} {{ form.remember_me.label }}</div>
             <br>
-            <div>
+            <div align="center">
                 <button type="submit" class="btn btn-primary" value="register">Login</button>
             </div>
         </form>
     </div>
     <br>
     <div style="text-align: center;font-family:verdana;">
-         <a href="{{ url_for('auth.register') }}">¿No estás registrado?</a>
+         <h4><a href="{{ url_for('auth.register') }}">¿No estás registrado?</a></h4>
     </div>
 {% endblock %}

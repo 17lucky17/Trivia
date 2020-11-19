@@ -31,7 +31,7 @@ q_movimiento = Pregunta(text="¿Para qué movimiento fue clave el aporte de Clau
 q_pintura = Pregunta(text="¿Quíen es el autor del cuadro Batalla de Las Piedras?",categoria=c_arte)
 q_musica = Pregunta(text="¿Quién compuso la música de la película Cinema Paradiso?",categoria=c_cine)
 q_director = Pregunta(text="¿Quién fue el director de Titanic?",categoria=c_cine)
-q_pelicula = Pregunta(text="¿Quién protagonizó la última zaga de Misión Imposible?",categoria=c_cine)
+q_pelicula = Pregunta(text="¿Quién protagonizó la última saga de Misión Imposible?",categoria=c_cine)
 q_celula = Pregunta(text="¿Cómo se llama el proceso de división de una célula en dos células hijas?",categoria=c_ciencia)
 q_elemento = Pregunta(text="¿Qué tipo de elemento es el Oganesón?",categoria=c_ciencia)
 q_velocidad = Pregunta(text="¿Cuál de estas velocidades corresponde a los movimientos circulares?",categoria=c_ciencia)

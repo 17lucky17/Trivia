@@ -49,7 +49,8 @@ admin.add_view(MyModelView(Role, db.session))
 """ Flask-Principal"""
 # Flask-Principal: Agregamos las necesidades a una identidad, una vez que se loguee el usuario.
 # Se ejecuta cuando el usuario pasa de anónimo a estar logueado
-@identity_loaded.connect_via(app)
+#@identity_loaded.connect_via(app)
+@identity_loaded.connect
 def on_identity_loaded(sender, identity):
     # Seteamos la identidad al usuario
     identity.user = current_user

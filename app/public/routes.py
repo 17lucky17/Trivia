@@ -29,12 +29,12 @@ def mostrarcategorias():
     categs = session['dicc_categorias']
     hora_inicio = session['hora_inicio']
     if(session['hora_inicio'] == None):
-        print("pongo hora inicio")
+        #print("pongo hora inicio")
         session['hora_inicio'] = datetime.datetime.now()
         hi = session['hora_inicio']
         hora_inicio = hi.strftime("%d/%m/%Y - %H:%M:%S")
 
-    print("Categorias en mostrarcategorias = ", session['dicc_categorias'])
+    #print("Categorias en mostrarcategorias = ", session['dicc_categorias'])
     return render_template('categorias.html', categorias=categorias, inicio=hora_inicio)
 
 

@@ -2,10 +2,9 @@
 from app import app, login_manager
 from . import auth_bp
 # importamos los modelos a usar
-from app.auth.models import User
+from app.auth.models import User, Role
 from flask import render_template, session, redirect, url_for, flash, request, jsonify
 from flask_login import LoginManager, current_user, login_user, login_required, logout_user
-from werkzeug.exceptions import HTTPException
 from .forms.register import RegisterForm
 from .forms.login import LoginForm
 from flask_principal import AnonymousIdentity, RoleNeed, UserNeed, identity_loaded, identity_changed
@@ -21,8 +20,7 @@ def login():
         return redirect(url_for('public.index'))
     form = LoginForm()
     if form.validate_on_submit():
-        print("en /trivia/login autenticado validate on submit")
-        print("mail = ", form.email.data)
+        #print("mail = ", form.email.data)
         #get by email valida
         user = User.get_by_email(form.email.data)
         if user is not None and user.check_password(form.password.data):
@@ -58,6 +56,10 @@ def register():
             user = User(name=username, email=email)
             user.set_password(password)
             user.save()
+            # Creo el rol del nuevo usuaricio
+            usuario_nuevo = User.get_by_email(email)
+            rol = Role(rolename="user", user_id=usuario_nuevo.id)
+            rol.save()
             # Dejamos al usuario logueado
             login_user(user, remember=True)
             return redirect(url_for('public.index'))
