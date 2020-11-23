@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
 {% block content %}
-<div style="text-align: center;font-family:verdana;">
+<div style="font-family:verdana;">
     <form action="" method="post" novalidate>
         {{ form.hidden_tag() }}
         <table border="0" align="center">
@@ -38,7 +41,7 @@
             </tr>
         </table>
         <br>
-        <div>
+        <div align="center">
             <button type="submit" class="btn btn-primary" value="register">Registro</button>
         </div>
     </form>

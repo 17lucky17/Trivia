@@ -1,4 +1,7 @@
 {% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
 {% block content %}
 <div style="text-align: center;font-family:verdana;">
     <h2>Selecciona una Categoria</h2>
@@ -19,7 +22,7 @@
                 {{categoria.descripcion}}
                 </a></td>
             {%else%}
-                <td style="font-size:20px;font-family:verdana;">
+                <td style="font-size:25px;font-family:verdana;">
                 {{categoria.descripcion}} <span style='font-size:25px;'>&#10004;</span>
                 </td>
             {%endif%}

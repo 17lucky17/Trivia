@@ -1,6 +1,9 @@
 {% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
 {% block content %}
-    <div style="text-align: center;font-family:verdana;">
+    <div style="font-family:verdana;">
         <form action="" method="post" novalidate>
             {{ form.hidden_tag() }}
             <table border="0" align="center">
@@ -22,7 +25,7 @@
                 </tr>
             </table>
             <br>
-            <div style="font-size:20px;">{{ form.remember_me() }} {{ form.remember_me.label }}</div>
+            <div style="font-size:20px;" align="center">{{ form.remember_me() }} {{ form.remember_me.label }}</div>
             <br>
             <div align="center">
                 <button type="submit" class="btn btn-primary" value="register">Login</button>

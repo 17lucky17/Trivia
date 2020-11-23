@@ -1,14 +1,17 @@
 {% extends "base.html" %}
+{% block head %}
+    {{ super() }}
+{% endblock %}
 {% block content %}
 <div style="text-align: center;font-family:verdana;">
 	<h2>Categoría: {{categoria.descripcion}}</h2>
 	<br>
-	<h2><span style="font-weight: bold; background-color: rgb(147, 206, 222);">{{pregunta.text}}</span></h2>
+	<h2><span style="font-weight: bold; background-color: rgb(135,230,250);">{{pregunta.text}}</span></h2>
 	<br>
 	<table border="0" align="center">
 	   {% for respuesta in respuestas %}
 			<tr><td style="font-size:25px;height:45px"><a href="/trivia/{{pregunta.id}}/resultado/{{respuesta.id}}">
-			&#9830; {{respuesta.text}}
+				{{respuesta.text}}
 			</a></td></tr>
 	   {% endfor %}
 	</table>
